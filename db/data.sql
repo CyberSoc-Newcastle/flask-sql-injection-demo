@@ -1,13 +1,13 @@
-DROP TABLE IF EXISTS Games;
-CREATE TABLE Games (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name VARCHAR(30) NOT NULL,
-    Price INTEGER NOT NULL,
-    Category VARCHAR(30) NOT NULL,
-    Released INTEGER NOT NULL
+DROP TABLE IF EXISTS games;
+CREATE TABLE games (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(60) NOT NULL,
+    price INTEGER NOT NULL,
+    category VARCHAR(60) NOT NULL,
+    released INTEGER NOT NULL
 );
 
-INSERT INTO Games ('Name', 'Price', 'Category', 'Released')
+INSERT INTO games (name, price, category, released)
 VALUES
     ('Duty Of Calls 1', 10, 'Shooter', 1),
     ('Duty of Calls 2', 20, 'Shooter', 1),
@@ -35,7 +35,3 @@ VALUES
     ('Mouse Simulator', 30, 'Simulator', 1),
     ('TV Simulator', 30, 'Simulator', 1),
     ('Door Simulator', 30, 'Simulator', 1);
-
-
-
-

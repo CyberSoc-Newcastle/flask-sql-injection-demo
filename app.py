@@ -9,9 +9,8 @@ app = Flask(__name__, static_folder="static", static_url_path="")
 app.secret_key = 'hello'
 
 # Database
-DATABASE = "project.db"
 db = SQLAlchemy()
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{BASE_DIR / DATABASE}"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:password@localhost:3306/gamestore"
 db.init_app(app)
 
 
@@ -20,8 +19,8 @@ def home():
     args = request.args
     query = args.get('query')
     if query:
-        sql_query = text(f"SELECT Name, Category, Price FROM Games "
-                         f"WHERE LOWER(Name) LIKE '%{query.lower()}%' AND Released=1")
+        sql_query = text(f"SELECT name, category, price FROM games "
+                         f"WHERE LOWER(name) LIKE '%{query.lower()}%' AND released=1")
         result = db.session.execute(sql_query)
         return render_template("home.html", results=True,
                                query=query, sql_query=sql_query, games=result.fetchall())
@@ -30,10 +29,11 @@ def home():
 
 @app.route('/reset')
 def reset():
-    with open('default.sql', mode='r') as f:
+    with open(BASE_DIR / 'db' / 'data.sql', mode='r') as f:
         script = f.read().replace("\n", "").replace("\t", "").split(";")
     for line in script:
-        print(text(line))
+        if line == "":
+            continue
         db.session.execute(text(line))
         db.session.commit()
     flash("Database successfully reset", "success")
