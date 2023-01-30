@@ -7,6 +7,13 @@ CREATE TABLE games (
     released INTEGER NOT NULL
 );
 
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(32) NOT NULL UNIQUE,
+    password VARCHAR(32) NOT NULL
+);
+
 INSERT INTO games (name, price, category, released)
 VALUES
     ('Duty Of Calls 1', 10, 'Shooter', 1),
@@ -35,3 +42,9 @@ VALUES
     ('Mouse Simulator', 30, 'Simulator', 1),
     ('TV Simulator', 30, 'Simulator', 1),
     ('Door Simulator', 30, 'Simulator', 1);
+
+INSERT INTO users (username, password)
+VALUES
+    ('admin1', MD5('cheese')),
+    ('admin2', MD5('yogurt')),
+    ('admin3', MD5('sand'));

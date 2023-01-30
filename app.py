@@ -27,6 +27,23 @@ def home():
     return render_template("home.html", results=False)
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+
+    username = request.form.get('username')
+    password = request.form.get('password')
+    sql_query = text(f"SELECT username, password from users "
+                     f"WHERE username='{username}' AND password=MD5('{password}')")
+    result = db.session.execute(sql_query)
+    if result.first():
+        flash("Login successful", "success")
+    else:
+        flash("Login failed", "danger")
+    return render_template("login.html", login_attempt=True, sql_query=sql_query)
+
+
 @app.route('/reset')
 def reset():
     with open(BASE_DIR / 'db' / 'data.sql', mode='r') as f:

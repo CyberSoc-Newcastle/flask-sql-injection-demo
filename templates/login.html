@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block top %}
+    <div class="mt-2 mb-3 text-center">
+        <h1>
+            <a href="{{ url_for('home') }}" style="text-decoration:none">
+                <span style="color:red">Game</span><span style="color:black">Store</span>
+            </a>
+        </h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if login_attempt %}
+        <div class="row text-center">
+            <p><b>SQL Query: </b><code>{{ sql_query }}</code></p>
+        </div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <div class="col-sm-8 col-md-6 col-lg-4 text-center">
+            <div class="card">
+                <h5 class="card-header">
+                    Admin Login
+                </h5>
+                <form class="p-3" method="POST">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center mt-4">
+            <a href="{{ url_for('home') }}">Return to main site</a>
+        </div>
+    </div>
+
+{% endblock %}
