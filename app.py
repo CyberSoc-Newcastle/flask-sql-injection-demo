@@ -21,7 +21,7 @@ def home():
     query = args.get('query')
     if query:
         sql_query = text(f"SELECT Name, Category, Price FROM Games "
-                         f"WHERE LOWER(Name) LIKE '%{query.lower()}%' AND Released = 1")
+                         f"WHERE LOWER(Name) LIKE '%{query.lower()}%' AND Released=1")
         result = db.session.execute(sql_query)
         return render_template("home.html", results=True,
                                query=query, sql_query=sql_query, games=result.fetchall())
