@@ -1,0 +1,15 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Delete Game{% endblock %}
+
+{% block content %}
+    <div class="card col-md-5">
+        <form class="card-body" method="POST">
+          <div class="mb-3">
+              <label for="id" class="form-label">Game ID</label>
+              <input type="text" class="form-control" id="id" name="id">
+          </div>
+          <button type="submit" class="btn btn-danger w-100">Delete Game</button>
+        </form>
+    </div>
+{% endblock %}

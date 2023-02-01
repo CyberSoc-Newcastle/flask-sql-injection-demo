@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% from "admin/macro.html" import nav_link with context %}
+
+
+{% block body %}
+    <div class="d-flex flex-row">
+        <div class="" style="width: 350px">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark text-center position-sticky min-vh-100" style="top: 0">
+                <a href="{{ url_for('admin') }}" class="mb-3 mb-md-0 me-md-auto text-white text-decoration-none w-100">
+                  <span class="fs-4">Admin Panel</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    {{ nav_link('game_list', 'All Games') }}
+                    {{ nav_link('game_insert', 'Insert Game') }}
+                    {{ nav_link('game_update', 'Update Game') }}
+                    {{ nav_link('game_delete', 'Delete Game') }}
+                </ul>
+                <hr>
+                <div class="dropdown">
+                  <a href="#" class="w-100 text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <strong>Logged in as: {{ current_user.id }}</strong>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="{{ url_for('home') }}">View Main Site</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Sign out</a></li>
+                  </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="w-100 p-3">
+            <span class="fs-4">{% block title %}{% endblock %}</span>
+            <hr>
+            {% if exec %}
+                <p><b>SQL Executed: </b><code>{{ sql_exec }}</code></p>
+            {% endif %}
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}} mb-3" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

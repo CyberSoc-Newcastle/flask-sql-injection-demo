@@ -1,0 +1,28 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}All Games{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered mt-2 text-center">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Released</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in games %}
+            <tr>
+                <td style="width: 100px;">{{ game[0] }}</td>
+                <td style="width: 100px;">{{ game[1] }}</td>
+                <td style="width: 100px;">{{ game[2] }}</td>
+                <td style="width: 100px;">£{{ game[3] }}</td>
+                <td style="width: 100px;">{% if game[4] == 1 %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
