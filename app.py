@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, flash, request
 import flask_login
-from flask_login import login_required
+from flask_login import login_required, current_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from pathlib import Path
@@ -47,6 +47,9 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('admin'))
+
     if request.method == "GET":
         return render_template("login.html")
 
