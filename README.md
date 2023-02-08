@@ -4,7 +4,7 @@ This is a Flask web application that is vulnerable to SQL injection. The goal of
 
 This Flask application is a mini website about a fictional game shop called 'GameStore'. The homepage allows users to search for a game, which will show the games that match the query that have been released. The application also includes an admin panel, which allows admin to view, add, delete and update the games in the database. Another option, that is also provided, is to reset the database incase all the data gets deleted from the database.
 
-Possible attacks on the application include: View games that haven't been released, stealing user's credentials and taking control of the admin panel. It is possible to gain full control of the database with this application and therefore it is recommended that you __DO NOT__ use this application on any public server.
+Possible attacks on the application include: Viewing games that haven't been released, stealing user's credentials and taking control of the admin panel. It is possible to gain full control of the database with this application and therefore it is recommended that you __DO NOT__ use this application on any public server.
 
 ## How to Run
 ### Requirements
